@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const client = require('./db');
 const path = require('path');
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./2_routes/auth');
 
 const app = express();
 const PORT = 3000;
