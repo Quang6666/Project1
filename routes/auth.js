@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../3_controllers/authController');
+const authController = require('../controllers/authController');
 
 // API login
 router.post('/login', authController.loginApi);
