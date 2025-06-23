@@ -1,0 +1,8 @@
+/* Style cho header */
+.header {
+  background: #007bff;
+  color: #fff;
+  padding: 16px 0;
+  text-align: center;
+  font-size: 1.5rem;
+}

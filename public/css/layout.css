@@ -1,0 +1,14 @@
+/* Style cho layout, container, grid, ... */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col {
+  flex: 1;
+  padding: 8px;
+}

@@ -32,4 +32,3 @@ erDiagram
     }
 ```
 
-Bạn có thể xem file này bằng extension Mermaid trong VS Code hoặc trên mermaid.live.
