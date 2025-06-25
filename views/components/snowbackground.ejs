@@ -1,0 +1,32 @@
+<div style="position:fixed;left:0;top:0;width:100vw;height:100vh;background:linear-gradient(180deg,#232947 0%,#384f78 50%,#b3d1f7 100%);z-index:0;pointer-events:none"></div>
+<canvas id="snow-canvas" style="width:100vw;height:100vh;display:block;position:fixed;left:0;top:0;pointer-events:none;z-index:1"></canvas>
+<div style="position:relative;z-index:10">
+  <%- typeof content !== 'undefined' ? content : '' %>
+</div>
+<script>
+(function(){
+  const SNOWFLAKE_COUNT = 40;
+  const canvas = document.getElementById('snow-canvas');
+  if (!canvas) return;
+  let ctx = canvas.getContext('2d');
+  let snowflakes = Array.from({length: SNOWFLAKE_COUNT},()=>({
+    x: Math.random(), y: Math.random(), r: 1+Math.random()*2.2, speed: 0.001+Math.random()*0.002, drift: (Math.random()-0.5)*0.0015
+  }));
+  function draw(){
+    if(!ctx||!canvas)return;
+    const w=canvas.width=window.innerWidth,h=canvas.height=window.innerHeight;
+    ctx.clearRect(0,0,w,h);
+    snowflakes.forEach(sf=>{
+      ctx.beginPath();ctx.arc(sf.x*w,sf.y*h,sf.r,0,Math.PI*2);
+      ctx.fillStyle="rgba(255,255,255,0.84)";
+      ctx.shadowColor="#e8f1ff";ctx.shadowBlur=8;ctx.fill();
+      sf.y+=sf.speed;sf.x+=sf.drift;
+      if(sf.y>1){sf.y=0;sf.x=Math.random();}
+      if(sf.x<0)sf.x=1;if(sf.x>1)sf.x=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+  window.addEventListener('resize',draw);
+})();
+</script>

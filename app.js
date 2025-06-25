@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', authRoutes);
 
+app.get('/test', (req, res) => res.render('test', { error: null }));
+
 app.listen(PORT, () => {
   console.log(`Server đang chạy tại http://localhost:${PORT}/login`);
 });

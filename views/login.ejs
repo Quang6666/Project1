@@ -8,44 +8,8 @@
     <link rel="stylesheet" href="/css/base.css">
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="form-container sign-up-container">
-            <form action="#">
-                <h1>Tạo tài khoản</h1>
-                <%- include('components/social-icons') %>
-                <span>hoặc sử dụng email của bạn để đăng ký</span>
-                <%- include('components/form-input', { label: 'Họ và tên', id: 'fullname', name: 'fullname', type: 'text', placeholder: 'Họ và tên', required: true }) %>
-                <%- include('components/form-input', { label: 'Email', id: 'email', name: 'email', type: 'email', placeholder: 'Email', required: true }) %>
-                <%- include('components/form-input', { label: 'Mật khẩu', id: 'password_signup', name: 'password', type: 'password', placeholder: 'Mật khẩu', required: true }) %>
-                <%- include('components/button-svg', { text: 'Đăng ký', type: 'submit' }) %>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form method="POST" action="/login">
-                <h1>Đăng nhập</h1>
-                <%- include('components/social-icons') %>
-                <span>hoặc sử dụng tài khoản của bạn</span>
-                <%- include('components/form-input', { label: 'Tên đăng nhập', id: 'username', name: 'username', type: 'text', placeholder: 'Tên đăng nhập', required: true }) %>
-                <%- include('components/form-input', { label: 'Mật khẩu', id: 'password', name: 'password', type: 'password', placeholder: 'Mật khẩu', required: true }) %>
-                <%- include('components/alert', { error: error }) %>
-                <%- include('components/button-svg', { text: 'Đăng nhập', type: 'submit' }) %>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Chào mừng trở lại!</h1>
-                    <p>Để giữ liên lạc với chúng tôi, vui lòng đăng nhập bằng thông tin cá nhân của bạn</p>
-                    <%- include('components/button-svg', { text: 'Đăng nhập', type: 'button', id: 'signIn', className: 'ghost' }) %>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Xin chào, bạn bè!</h1>
-                    <p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
-                    <%- include('components/button-svg', { text: 'Đăng ký', type: 'button', id: 'signUp', className: 'ghost' }) %>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%- include('components/snowbackground') %>
+    <%- include('components/login-content', { error: error }) %>
     <script src="/js/login.js"></script>
 </body>
 </html>
