@@ -34,3 +34,23 @@ exports.loginApi = async (req, res) => {
     res.json({ success: false, message: 'Lỗi hệ thống!' });
   }
 };
+
+// Xử lý API đăng ký
+exports.registerApi = async (req, res) => {
+  const { username, password, email } = req.body;
+  if (!username || !password || !email) {
+    return res.json({ success: false, message: 'Thiếu thông tin!' });
+  }
+  try {
+    // Kiểm tra username/email đã tồn tại
+    const check = await client.query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email]);
+    if (check.rows.length > 0) {
+      return res.json({ success: false, message: 'Username hoặc email đã tồn tại!' });
+    }
+    // Thêm user mới
+    await client.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3)', [username, password, email]);
+    res.json({ success: true, message: 'Đăng ký thành công!' });
+  } catch (err) {
+    res.json({ success: false, message: 'Lỗi hệ thống!' });
+  }
+};

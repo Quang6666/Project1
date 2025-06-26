@@ -13,14 +13,14 @@ body {
 h1 { font-weight: bold; margin: 0; font-size: 1.5rem; }
 h2 { text-align: center; }
 p { font-size: 14px; font-weight: 100; line-height: 20px; letter-spacing: 0.5px; margin: 20px 0 30px; }
-span { font-size: 12px; }
+span { font-size: 12px; padding: 15px; }
 a { color: #333; font-size: 14px; text-decoration: none; margin: 15px 0; transition: .3s; }
 a:nth-child(1):hover { background-color: #05daf7; color: rgb(45, 97, 255); }
 a:nth-child(2):hover { background-color: #05daf7; color: rgb(255, 45, 45); }
 a:nth-child(3):hover { background-color: #05daf7; color: rgb(45, 192, 255); }
 a:nth-child(4):hover { background-color: #05daf7; color: #fff; }
 form {
-  background-color: #2e3763;
+  background-color: #232947;
   display: flex;
   align-items: center;
   justify-content: center;

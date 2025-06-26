@@ -34,3 +34,8 @@ CREATE TABLE role_permissions (
     permission_id INT REFERENCES permissions(id) ON DELETE CASCADE,
     PRIMARY KEY (role_id, permission_id)
 );
+select * from users;
+select * from roles;
+select * from permissions;
+select * from user_roles;
+select * from role_permissions;
