@@ -19,7 +19,7 @@ if (loginForm) {
         e.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        const res = await fetch('/api/login', {
+        const res = await fetch('/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`

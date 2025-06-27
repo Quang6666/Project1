@@ -14,6 +14,8 @@ CREATE TABLE roles (
     description TEXT
 );
 -- Thêm vai trò guest vào bảng roles
+INSERT INTO roles (name, description) VALUES ('admin', 'Administrator with full access');
+INSERT INTO roles (name, description) VALUES ('staff', 'Staff member with standard access');
 INSERT INTO roles (name, description) VALUES ('guest', 'Guest user with limited access');
 -- Bảng quyền
 CREATE TABLE permissions (
@@ -40,3 +42,8 @@ select * from roles;
 select * from permissions;
 select * from user_roles;
 select * from role_permissions;
+Drop table if exists users cascade;
+Drop table if exists roles cascade;
+Drop table if exists permissions cascade;
+Drop table if exists user_roles cascade;
+Drop table if exists role_permissions cascade;
