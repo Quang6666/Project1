@@ -13,7 +13,8 @@ CREATE TABLE roles (
     name VARCHAR(50) UNIQUE NOT NULL,
     description TEXT
 );
-
+-- Thêm vai trò guest vào bảng roles
+INSERT INTO roles (name, description) VALUES ('guest', 'Guest user with limited access');
 -- Bảng quyền
 CREATE TABLE permissions (
     id SERIAL PRIMARY KEY,

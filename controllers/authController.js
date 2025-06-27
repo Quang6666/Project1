@@ -48,7 +48,13 @@ exports.registerApi = async (req, res) => {
       return res.json({ success: false, message: 'Username hoặc email đã tồn tại!' });
     }
     // Thêm user mới
-    await client.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3)', [username, password, email]);
+    const insertUser = await client.query('INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING id', [username, password, email]);
+    const userId = insertUser.rows[0].id;
+    // Gán vai trò guest cho user mới
+    const guestRole = await client.query("SELECT id FROM roles WHERE name = 'guest'");
+    if (guestRole.rows.length > 0) {
+      await client.query('INSERT INTO user_roles (user_id, role_id) VALUES ($1, $2)', [userId, guestRole.rows[0].id]);
+    }
     res.json({ success: true, message: 'Đăng ký thành công!' });
   } catch (err) {
     res.json({ success: false, message: 'Lỗi hệ thống!' });
