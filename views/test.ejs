@@ -1,1 +1,9 @@
-<%- include('components/logincontent', { error: error }) %>
+<link rel="stylesheet" href="/css/card.css">
+<%- include('components/Card', {
+  header: 'Thông báo',
+  title: 'Chào mừng!',
+  description: 'Đây là ví dụ sử dụng Card component EJS.',
+  body: '<p>Bạn đã sử dụng thành công component Card dưới dạng partial EJS.</p>',
+  footer: '© 2025 MyProject',
+  className: 'mt-5 mb-5'
+}) %>

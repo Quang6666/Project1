@@ -1,0 +1,17 @@
+<div class="card <%= typeof className !== 'undefined' ? className : '' %>">
+  <% if (typeof header !== 'undefined') { %>
+    <div class="card-header"><%= header %></div>
+  <% } %>
+  <% if (typeof title !== 'undefined') { %>
+    <div class="card-title"><%= title %></div>
+  <% } %>
+  <% if (typeof description !== 'undefined') { %>
+    <div class="card-description"><%= description %></div>
+  <% } %>
+  <div class="card-content">
+    <%- body %>
+  </div>
+  <% if (typeof footer !== 'undefined') { %>
+    <div class="card-footer"><%= footer %></div>
+  <% } %>
+</div>

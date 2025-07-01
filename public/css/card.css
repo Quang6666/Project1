@@ -1,0 +1,45 @@
+/* Card Glassmorphism Effect */
+.card {
+  background: rgba(29, 2, 2, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0;
+  margin: 1rem 0;
+  transition: box-shadow 0.3s;
+}
+.card:hover {
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+.card-header {
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+}
+.card-title {
+  padding: 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 0.25rem;
+}
+.card-description {
+  padding: 0 1.5rem 0.5rem 1.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+.card-content {
+  padding: 0 1.5rem 1rem 1.5rem;
+  color: #222;
+}
+.card-footer {
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  font-size: 0.95rem;
+  color: #333;
+  background: rgba(255,255,255,0.10);
+  border-radius: 0 0 1rem 1rem;
+}
