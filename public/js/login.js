@@ -24,17 +24,20 @@ if (loginForm) {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
         });
-        // Nếu backend trả về HTML (redirect), chuyển sang xử lý như sau:
         try {
             const data = await res.json();
             if(data.success) {
                 window.location.href = '/admin';
             } else {
-                document.querySelector('.error').textContent = data.message;
+                // Nếu lỗi phân quyền, chuyển hướng sang /test
+                if (data.message && (data.message.toLowerCase().includes('không có quyền') || data.message.toLowerCase().includes('not authorized'))) {
+                    window.location.href = '/test';
+                } else {
+                    document.querySelector('.error').textContent = data.message;
+                }
             }
         } catch (err) {
-            // Nếu không phải JSON (có thể là redirect hoặc lỗi), fallback reload trang
-            window.location.href = '/admin';
+            // Nếu không phải JSON (có thể là redirect hoặc lỗi), không chuyển trang nữa
         }
     });
 }

@@ -9,9 +9,15 @@ exports.loginPage = (req, res) => {
 exports.loginPagePost = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const result = await client.query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password]);
+    // Lấy user và role
+    const result = await client.query('SELECT u.*, ur.role_id, r.name as role_name FROM users u LEFT JOIN user_roles ur ON u.id = ur.user_id LEFT JOIN roles r ON ur.role_id = r.id WHERE u.username = $1 AND u.password = $2', [username, password]);
     if (result.rows.length > 0) {
-      res.redirect('/admin'); // chuyển sang dashboard admin
+      const user = result.rows[0];
+      if (user.role_id && user.role_id == 1) { // id=1 là admin
+        res.redirect('/admin');
+      } else {
+        res.redirect('/test');
+      }
     } else {
       res.render('login', { error: 'Sai tài khoản hoặc mật khẩu!' });
     }
@@ -24,9 +30,14 @@ exports.loginPagePost = async (req, res) => {
 exports.loginApi = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const result = await client.query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password]);
+    const result = await client.query('SELECT u.*, ur.role_id, r.name as role_name FROM users u LEFT JOIN user_roles ur ON u.id = ur.user_id LEFT JOIN roles r ON ur.role_id = r.id WHERE u.username = $1 AND u.password = $2', [username, password]);
     if (result.rows.length > 0) {
-      res.json({ success: true, message: 'Đăng nhập thành công!' });
+      const user = result.rows[0];
+      if (user.role_id && user.role_id == 1) { // id=1 là admin
+        res.json({ success: true, message: 'Đăng nhập thành công!' });
+      } else {
+        res.json({ success: false, message: 'Tài khoản của bạn không có quyền truy cập trang admin!' });
+      }
     } else {
       res.json({ success: false, message: 'Sai tài khoản hoặc mật khẩu!' });
     }

@@ -6,7 +6,8 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+-- Tạo tài khoản admin
+INSERT INTO users (username, password, email) VALUES ('admin', 'admin123', 'admin@example.com');
 -- Bảng vai trò
 CREATE TABLE roles (
     id SERIAL PRIMARY KEY,
@@ -30,7 +31,8 @@ CREATE TABLE user_roles (
     role_id INT REFERENCES roles(id) ON DELETE CASCADE,
     PRIMARY KEY (user_id, role_id)
 );
-
+INSERT INTO user_roles (user_id, role_id)
+SELECT u.id, r.id FROM users u, roles r WHERE u.username = 'admin' AND r.name = 'admin';
 -- Bảng liên kết vai trò - quyền
 CREATE TABLE role_permissions (
     role_id INT REFERENCES roles(id) ON DELETE CASCADE,
