@@ -18,7 +18,9 @@ exports.getUserList = async (req, res) => {
     `);
     // Lấy danh sách role
     const roles = await db.query('SELECT id, name FROM roles ORDER BY id');
-    res.render('admin', {
+    // Chọn view động: users.ejs hoặc admin.ejs
+    const view = req.renderView || 'admin';
+    res.render(view, {
       users: users.rows,
       roles: roles.rows
     });

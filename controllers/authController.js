@@ -11,7 +11,7 @@ exports.loginPagePost = async (req, res) => {
   try {
     const result = await client.query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password]);
     if (result.rows.length > 0) {
-      res.send('Đăng nhập thành công!');
+      res.redirect('/admin'); // chuyển sang dashboard admin
     } else {
       res.render('login', { error: 'Sai tài khoản hoặc mật khẩu!' });
     }
