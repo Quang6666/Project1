@@ -12,4 +12,7 @@ router.post('/register', authController.registerApi);
 router.get('/login', authController.loginPage);
 router.post('/login', authController.loginPagePost);
 
+// Đăng xuất
+router.get('/logout', authController.logout);
+
 module.exports = router;

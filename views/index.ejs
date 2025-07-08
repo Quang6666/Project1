@@ -1,9 +1,84 @@
-<link rel="stylesheet" href="/css/card.css">
-<%- include('components/Card', {
-  header: 'Thông báo',
-  title: 'Chào mừng!',
-  description: 'Đây là ví dụ sử dụng Card component EJS.',
-  body: '<p>Bạn đã sử dụng thành công component Card dưới dạng partial EJS.</p>',
-  footer: '© 2025 MyProject',
-  className: 'mt-5 mb-5'
-}) %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Snow Fashion - Trang chủ</title>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/button.css">
+  <link rel="stylesheet" href="/css/card.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { background: #eaf6fb; }
+    .winter-banner {
+      background: url('/img/winter-banner.jpg') center/cover no-repeat;
+      padding-top: 70px;
+      min-height: 320px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-shadow: 0 2px 8px #0008;
+    }
+    .winter-title { font-size: 2.5rem; font-weight: bold; }
+    .winter-desc { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .product-card img { height: 180px; object-fit: cover; }
+    .snow-effect { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 1; }
+    .main-content { position: relative; z-index: 2; padding-top: 80px; }
+  </style>
+</head>
+<body>
+  <%- include('components/NavigationBar') %>
+  <%- include('components/snowbackground') %>
+  <div class="main-content">
+    <div class="winter-banner" style="padding-top: 0;">
+      <div class="winter-title">Snow Fashion - Sắc Đông Thời Trang</div>
+      <div class="winter-desc">Khám phá bộ sưu tập quần áo mùa đông ấm áp, phong cách cho nam & nữ</div>
+      <a href="#products" class="btn btn-primary btn-lg">Mua sắm ngay</a>
+    </div>
+    <div class="container py-5">
+      <h2 class="text-center mb-4" id="products">Sản phẩm nổi bật</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div class="card product-card shadow">
+            <img src="/img/ao-khoac-nam.jpg" class="card-img-top" alt="Áo khoác nam mùa đông">
+            <div class="card-body">
+              <h5 class="card-title">Áo khoác nam lót lông</h5>
+              <p class="card-text">Giữ ấm tuyệt đối, thiết kế trẻ trung, phù hợp mọi hoạt động ngoài trời.</p>
+              <a href="#" class="btn btn-outline-primary">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card product-card shadow">
+            <img src="/img/ao-khoac-nu.jpg" class="card-img-top" alt="Áo khoác nữ mùa đông">
+            <div class="card-body">
+              <h5 class="card-title">Áo khoác nữ dáng dài</h5>
+              <p class="card-text">Phong cách Hàn Quốc, chất liệu chống nước, màu sắc thanh lịch.</p>
+              <a href="#" class="btn btn-outline-primary">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card product-card shadow">
+            <img src="/img/phu-kien-dong.jpg" class="card-img-top" alt="Phụ kiện mùa đông">
+            <div class="card-body">
+              <h5 class="card-title">Phụ kiện mùa đông</h5>
+              <p class="card-text">Khăn len, mũ len, găng tay, tất dày... đủ màu sắc, đủ size cho cả gia đình.</p>
+              <a href="#" class="btn btn-outline-primary">Xem chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="#" class="btn btn-lg btn-success px-5">Xem tất cả sản phẩm</a>
+      </div>
+    </div>
+    <footer class="text-center py-4 bg-light mt-5">
+      <div>© 2025 Snow Fashion | Mang hơi ấm đến mọi nhà</div>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

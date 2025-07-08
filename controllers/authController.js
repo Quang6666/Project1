@@ -13,6 +13,13 @@ exports.loginPagePost = async (req, res) => {
     const result = await client.query('SELECT u.*, ur.role_id, r.name as role_name FROM users u LEFT JOIN user_roles ur ON u.id = ur.user_id LEFT JOIN roles r ON ur.role_id = r.id WHERE u.username = $1 AND u.password = $2', [username, password]);
     if (result.rows.length > 0) {
       const user = result.rows[0];
+      // Lưu user vào session
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+        role_id: user.role_id,
+        role_name: user.role_name
+      };
       if (user.role_id && user.role_id == 1) { // id=1 là admin
         res.redirect('/admin');
       } else {
@@ -70,4 +77,19 @@ exports.registerApi = async (req, res) => {
   } catch (err) {
     res.json({ success: false, message: 'Lỗi hệ thống!' });
   }
+};
+
+// Middleware kiểm tra đăng nhập và quyền admin
+exports.requireAdmin = (req, res, next) => {
+  if (req.session.user && req.session.user.role_id == 1) {
+    return next();
+  }
+  return res.redirect('/login');
+};
+
+// Đăng xuất
+exports.logout = (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/login');
+  });
 };
