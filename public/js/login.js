@@ -31,7 +31,7 @@ if (loginForm) {
             } else {
                 // Nếu lỗi phân quyền, chuyển hướng sang /test
                 if (data.message && (data.message.toLowerCase().includes('không có quyền') || data.message.toLowerCase().includes('not authorized'))) {
-                    window.location.href = '/test';
+                    window.location.href = '/index';
                 } else {
                     document.querySelector('.error').textContent = data.message;
                 }

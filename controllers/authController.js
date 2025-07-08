@@ -16,7 +16,7 @@ exports.loginPagePost = async (req, res) => {
       if (user.role_id && user.role_id == 1) { // id=1 là admin
         res.redirect('/admin');
       } else {
-        res.redirect('/test');
+        res.redirect('/index');
       }
     } else {
       res.render('login', { error: 'Sai tài khoản hoặc mật khẩu!' });

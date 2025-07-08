@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', authRoutes);
 app.use('/admin', adminRoutes);
 
-app.get('/test', (req, res) => res.render('test', { error: null }));
+app.get('/index', (req, res) => res.render('index', { error: null }));
 
 app.listen(PORT, () => {
   console.log(`Server đang chạy tại http://localhost:${PORT}/login`);
