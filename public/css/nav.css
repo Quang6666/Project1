@@ -36,7 +36,7 @@ body.theme-snow {
 
 .navbar {
   position: fixed;
-  top: 0; left: 0; width: 100vw;
+  top: 0; left: 0; width: 100vw;height: 60px;
   z-index: 50;
   background: rgba(35,54,88,0.92);
   backdrop-filter: blur(8px);

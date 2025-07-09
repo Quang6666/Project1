@@ -40,11 +40,15 @@ exports.loginApi = async (req, res) => {
     const result = await client.query('SELECT u.*, ur.role_id, r.name as role_name FROM users u LEFT JOIN user_roles ur ON u.id = ur.user_id LEFT JOIN roles r ON ur.role_id = r.id WHERE u.username = $1 AND u.password = $2', [username, password]);
     if (result.rows.length > 0) {
       const user = result.rows[0];
-      if (user.role_id && user.role_id == 1) { // id=1 là admin
-        res.json({ success: true, message: 'Đăng nhập thành công!' });
-      } else {
-        res.json({ success: false, message: 'Tài khoản của bạn không có quyền truy cập trang admin!' });
-      }
+      // Lưu user vào session (nếu muốn đồng bộ với loginPagePost)
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+        role_id: user.role_id,
+        role_name: user.role_name
+      };
+      const isAdmin = user.role_id && user.role_id == 1;
+      res.json({ success: true, isAdmin, message: isAdmin ? 'Đăng nhập thành công!' : 'Đăng nhập thành công! Bạn không phải admin.' });
     } else {
       res.json({ success: false, message: 'Sai tài khoản hoặc mật khẩu!' });
     }

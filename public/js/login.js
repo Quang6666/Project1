@@ -26,15 +26,14 @@ if (loginForm) {
         });
         try {
             const data = await res.json();
-            if(data.success) {
-                window.location.href = '/admin';
-            } else {
-                // Nếu lỗi phân quyền, chuyển hướng sang /test
-                if (data.message && (data.message.toLowerCase().includes('không có quyền') || data.message.toLowerCase().includes('not authorized'))) {
-                    window.location.href = '/index';
+            if (data.success) {
+                if (data.isAdmin) {
+                    window.location.href = '/admin';
                 } else {
-                    document.querySelector('.error').textContent = data.message;
+                    window.location.href = '/index';
                 }
+            } else {
+                document.querySelector('.error').textContent = data.message;
             }
         } catch (err) {
             // Nếu không phải JSON (có thể là redirect hoặc lỗi), không chuyển trang nữa
