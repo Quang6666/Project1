@@ -12,7 +12,8 @@
     body { background: #eaf6fb; }
     .winter-banner {
       background: url('/img/winter-banner.jpg') center/cover no-repeat;
-      padding-top: 70px;
+      padding-top: 200px; /* Đảm bảo không bị navbar che */
+  
       min-height: 320px;
       color: #fff;
       display: flex;
@@ -32,7 +33,7 @@
   <%- include('components/NavigationBar') %>
   <%- include('components/snowbackground') %>
   <div class="main-content">
-    <div class="winter-banner" style="padding-top: 0;">
+    <div class="winter-banner">
       <div class="winter-title">Snow Fashion - Sắc Đông Thời Trang</div>
       <div class="winter-desc">Khám phá bộ sưu tập quần áo mùa đông ấm áp, phong cách cho nam & nữ</div>
       <a href="#products" class="btn btn-primary btn-lg">Mua sắm ngay</a>
