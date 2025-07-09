@@ -8,6 +8,9 @@
 </head>
 <body class="bg-light">
   <div class="container py-4">
+    <div class="mb-3">
+      <a href="/admin" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Quay lại trang Admin</a>
+    </div>
     <h1 class="mb-4">Quản lý người dùng</h1>
     <div class="card shadow mb-4">
       <div class="card-header bg-primary text-white">Danh sách người dùng</div>
@@ -24,6 +27,7 @@
           </thead>
           <tbody>
             <% users.forEach(function(user, idx) { %>
+              <% if (user.role_id === 1) return; %>
               <tr>
                 <td><%= idx + 1 %></td>
                 <td><%= user.username %></td>
@@ -33,13 +37,14 @@
                     <input type="hidden" name="user_id" value="<%= user.id %>">
                     <select name="role_id" class="form-select form-select-sm me-2" style="width:auto;">
                       <% roles.forEach(function(role) { %>
+                        <% if (role.id === 1 && user.role_id !== 1) { return; } %>
                         <option value="<%= role.id %>" <%= user.role_id === role.id ? 'selected' : '' %>><%= role.name %></option>
                       <% }) %>
                     </select>
-                    <button type="submit" class="btn btn-sm btn-success">Cập nhật</button>
-                  </form>
                 </td>
                 <td>
+                    <button type="submit" class="btn btn-sm btn-success">Cập nhật</button>
+                  </form>
                   <!-- Có thể thêm nút xóa/sửa ở đây nếu cần -->
                 </td>
               </tr>
