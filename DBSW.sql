@@ -39,13 +39,64 @@ CREATE TABLE role_permissions (
     permission_id INT REFERENCES permissions(id) ON DELETE CASCADE,
     PRIMARY KEY (role_id, permission_id)
 );
+
+-- Bảng sản phẩm
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price NUMERIC(12,2) NOT NULL,
+    image_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Bảng danh mục sản phẩm
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL,
+    description TEXT
+);
+
+-- Bảng liên kết nhiều-nhiều sản phẩm - danh mục
+CREATE TABLE product_categories (
+    product_id INT REFERENCES products(id) ON DELETE CASCADE,
+    category_id INT REFERENCES categories(id) ON DELETE CASCADE,
+    PRIMARY KEY (product_id, category_id)
+);
+
+-- Bảng đơn hàng
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE SET NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(30) DEFAULT 'pending'
+);
+
+-- Bảng chi tiết đơn hàng (liên kết orders và products)
+CREATE TABLE order_items (
+    order_id INT REFERENCES orders(id) ON DELETE CASCADE,
+    product_id INT REFERENCES products(id) ON DELETE CASCADE,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    price NUMERIC(12,2) NOT NULL,
+    PRIMARY KEY (order_id, product_id)
+);
 select * from users;
 select * from roles;
 select * from permissions;
 select * from user_roles;
 select * from role_permissions;
+select * from products;
+select * from categories;
+select * from product_categories;
+select * from orders;
+select * from order_items;
 Drop table if exists users cascade;
 Drop table if exists roles cascade;
 Drop table if exists permissions cascade;
 Drop table if exists user_roles cascade;
 Drop table if exists role_permissions cascade;
+Drop table if exists products cascade;
+Drop table if exists categories cascade;
+Drop table if exists product_categories cascade;
+Drop table if exists orders cascade;
+Drop table if exists order_items cascade;
