@@ -4,6 +4,7 @@ const client = require('./db');
 const path = require('path');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
+const adminProductRoutes = require('./routes/adminProduct');
 const session = require('express-session');
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(session({
 }));
 app.use('/', authRoutes);
 app.use('/admin', adminRoutes);
+app.use('/admin', adminProductRoutes);
 
 app.get('/index', (req, res) => res.render('index', { error: null }));
 
